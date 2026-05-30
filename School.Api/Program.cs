@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using School.Core;
+using School.Infrastructure;
 using School.Infrastructure.Context;
+using School.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +12,16 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// database connection
+#region Database Connection
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+#endregion
+
+#region Dependency Injection
+builder.Services.AddInfrastructureDependencies()
+                .AddServiceDependencies()
+                .AddCoreDependencies();
+#endregion
 
 var app = builder.Build();
 

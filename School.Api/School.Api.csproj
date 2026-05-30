@@ -16,12 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\School.Core\School.Core.csproj" />
     <ProjectReference Include="..\School.Domain\School.Domain.csproj" />
+    <ProjectReference Include="..\School.Service\School.Service.csproj" />
   </ItemGroup>
 
 </Project>
