@@ -3,12 +3,11 @@ using MediatR;
 using School.Core.Bases;
 using School.Core.Features.Student.Queries.Models;
 using School.Core.Features.Student.Queries.Results;
-using School.Domain.Entities;
 using School.Service.Abstracts;
 
 namespace School.Core.Features.Student.Queries.Handlers
 {
-    public class StudentHandler : ResponseHandler, IRequestHandler<GetStudentListQuery, Response<List<GetStudentListResponse>>>
+    public class StudentHandler : ResponseHandler, IRequestHandler<GetStudentListQuery, Response<List<GetStudentListDto>>>
     {
         #region Fields
         private readonly IStudentService _studentService;
@@ -24,11 +23,11 @@ namespace School.Core.Features.Student.Queries.Handlers
         #endregion
 
         #region Functions
-        public async Task<Response<List<GetStudentListResponse>>> Handle(GetStudentListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetStudentListDto>>> Handle(GetStudentListQuery request, CancellationToken cancellationToken)
         {
             var result = await _studentService.GetStudentListAsync();
             // Mapping Student entities to GetStudentListResponse DTOs using auto mapper
-            var resultMapper = _mapper.Map<List<GetStudentListResponse>>(result);
+            var resultMapper = _mapper.Map<List<GetStudentListDto>>(result);
             return Success(resultMapper);
         }
         #endregion
