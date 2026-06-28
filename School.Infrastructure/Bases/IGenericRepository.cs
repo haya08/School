@@ -5,7 +5,8 @@ namespace School.Infrastructure.Bases
     public interface IGenericRepository<T> where T : class
     {
         Task DeleteRangeAsync(ICollection<T> entities);
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(Guid id);
+        Task<T> GetByIdAsync(string id);
         Task SaveChangesAsync();
         IDbContextTransaction BeginTransaction();
         void Commit();

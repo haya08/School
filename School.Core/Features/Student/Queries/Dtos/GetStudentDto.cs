@@ -2,7 +2,7 @@
 
 namespace School.Core.Features.Student.Queries.Results
 {
-    public class GetStudentListDto
+    public class GetStudentDto
     {
         public Guid Id { get; set; }
         public string? FirstName { get; set; }

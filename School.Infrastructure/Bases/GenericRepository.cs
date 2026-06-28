@@ -18,9 +18,8 @@ namespace School.Infrastructure.Bases
         #endregion
 
         #region Functions
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
-
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
@@ -85,6 +84,11 @@ namespace School.Infrastructure.Bases
         public virtual async Task UpdateRangeAsync(ICollection<T> entities)
         {
             _dbContext.Set<T>().UpdateRange(entities);
+        }
+
+        public virtual async Task<T> GetByIdAsync(string id)
+        {
+            return await _dbContext.Set<T>().FindAsync(id);
         }
         #endregion
     }

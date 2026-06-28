@@ -8,7 +8,7 @@ namespace School.Core.Mapping.Student
     {
         public StudentProfile()
         { 
-            CreateMap<TbStudent, GetStudentListDto>()
+            CreateMap<TbStudent, GetStudentDto>()
                 .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.Name));
         }
     }
