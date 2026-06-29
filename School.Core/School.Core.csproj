@@ -13,9 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Student\Commands\Handlers\" />
-    <Folder Include="Features\Student\Commands\Models\" />
-    <Folder Include="Features\Student\Commands\" />
     <Folder Include="Features\Student\Commands\Validators\" />
   </ItemGroup>
 

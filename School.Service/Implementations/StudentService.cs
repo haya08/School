@@ -19,6 +19,17 @@ namespace School.Service.Implementations
         #endregion
 
         #region Functions
+        public async Task<string> AddAsync(TbStudent student)
+        {
+            // check for duplicate email
+            var result = await _studentRepository.GetTableNoTracking().Where(s=>s.Email == student.Email).FirstOrDefaultAsync();
+            if (result != null)
+                return "Student already exists";
+
+            await _studentRepository.AddAsync(student);
+            await _studentRepository.SaveChangesAsync();
+            return "Added successfully!";
+        }
         public async Task<TbStudent> GetStudentByIdAsync(Guid id)
         {
             //return await _studentRepository.GetByIdAsync(id);
