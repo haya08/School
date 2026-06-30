@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using School.Api.Bases;
 using School.Core.Features.Student.Commands.Models;
 using School.Core.Features.Student.Queries.Models;

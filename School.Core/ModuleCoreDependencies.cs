@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using School.Infrastructure.Abstracts;
-using School.Infrastructure.Repositories;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using School.Core.Behavior;
 using System.Reflection;
 
 namespace School.Core
@@ -14,6 +15,10 @@ namespace School.Core
 
             // Configration of AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            // Get Validators
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             return services;
         }

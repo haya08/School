@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using School.Core;
+using School.Core.MiddleWare;
 using School.Infrastructure;
 using School.Infrastructure.Context;
 using School.Service;
@@ -37,6 +38,10 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = string.Empty;
     });
 }
+
+#region Handle Exceptions
+app.UseMiddleware<ErrorHandlerMiddleware>();
+#endregion
 
 app.UseHttpsRedirection();
 

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using School.Core.Bases;
 using System.Net;
@@ -17,13 +16,13 @@ namespace School.Api.Bases
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK
-                    :
+                                :
                     return new OkObjectResult(response);
                 case HttpStatusCode.Created
-                    :
+                                :
                     return new CreatedResult(string.Empty, response);
                 case HttpStatusCode.Unauthorized
-                    :
+                                :
                     return new UnauthorizedObjectResult(response);
                 case HttpStatusCode.BadRequest
                     :
