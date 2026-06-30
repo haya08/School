@@ -14,6 +14,7 @@
             public const string ById = Prefix + "/{id}";
 
             public const string Add = Prefix + "/Add";
+            public const string Edit = Prefix + "/Edit";
         }
     }
 }

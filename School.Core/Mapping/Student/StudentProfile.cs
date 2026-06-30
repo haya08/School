@@ -1,6 +1,4 @@
-﻿using School.Core.Features.Student.Queries.Results;
-using School.Domain.Entities;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace School.Core.Mapping.Student
 {
@@ -10,6 +8,7 @@ namespace School.Core.Mapping.Student
         {
             GetStudentQueryMapping();
             AddStudentCommandMapping();
+            EditStudentCommandMapping();
         }
     }
 }

@@ -67,7 +67,7 @@ namespace School.Core.Bases
         {
             return new Response<T>()
             {
-                Data = entity,
+                Data = { },
                 StatusCode = HttpStatusCode.Created,
                 Succeeded = true,
                 Message = "Created Successfully",

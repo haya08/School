@@ -8,6 +8,7 @@ using School.Service.Abstracts;
 namespace School.Core.Features.Student.Commands.Handlers
 {
     public class StudentCommandHandler : ResponseHandler, IRequestHandler<AddStudentCommand, Response<string>>
+                                                        , IRequestHandler<EditStudentCommand, Response<string>>
     {
         #region Fields
         private readonly IStudentService _studentService;
@@ -28,10 +29,14 @@ namespace School.Core.Features.Student.Commands.Handlers
             // map between the request DTO & TbStudent
             var resultMapper = _mapper.Map<TbStudent>(request);
             var result = await _studentService.AddAsync(resultMapper);
-            if (result == "Student already exists")
-                return UnprocessableEntity<string>();
-
             return Created(result);
+        }
+
+        public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
+        {
+            var resultMapper = _mapper.Map<TbStudent>(request);
+            var result = await _studentService.UpdateAsync(resultMapper);
+            return Success(result);
         }
         #endregion
     }

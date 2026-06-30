@@ -21,15 +21,23 @@ namespace School.Service.Implementations
         #region Functions
         public async Task<string> AddAsync(TbStudent student)
         {
-            // check for duplicate email
-            var result = await _studentRepository.GetTableNoTracking().Where(s=>s.Email == student.Email).FirstOrDefaultAsync();
-            if (result != null)
+            //check on duplicate emails
+            var isDuplicate = await IsEmailExists(student.Email);
+            if (isDuplicate)
                 return "Student already exists";
 
             await _studentRepository.AddAsync(student);
             await _studentRepository.SaveChangesAsync();
             return "Added successfully!";
         }
+
+        public async Task<string> UpdateAsync(TbStudent student)
+        {
+            await _studentRepository.UpdateAsync(student);
+            await _studentRepository.SaveChangesAsync();
+            return "Updated successfully!";
+        }
+
         public async Task<TbStudent> GetStudentByIdAsync(Guid id)
         {
             //return await _studentRepository.GetByIdAsync(id);
@@ -39,9 +47,25 @@ namespace School.Service.Implementations
                                            .FirstOrDefaultAsync();
         }
 
+        public async Task<TbStudent> GetStudentByEmail(string email)
+        {
+            return await _studentRepository.GetTableNoTracking()
+                                           .Include(s => s.Department)
+                                           .Where(s => s.Email == email)
+                                           .FirstOrDefaultAsync();
+        }
+
         public async Task<List<TbStudent>> GetStudentListAsync()
         {
             return await _studentRepository.GetStudentListAsync();
+        }
+        #endregion
+
+        #region Helper functions
+        public async Task<bool> IsEmailExists(string email)
+        {
+            var result = await _studentRepository.GetTableNoTracking().Where(s => s.Email == email).FirstOrDefaultAsync();
+            return result != null;
         }
         #endregion
     }

@@ -29,5 +29,12 @@ namespace School.Api.Controllers
             var result = await Mediator.Send(command);
             return NewResult(result);
         }
+
+        [HttpPut(Router.Student.Edit)]
+        public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return NewResult(result);
+        }
     }
 }
